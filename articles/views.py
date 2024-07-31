@@ -53,3 +53,26 @@ def delete(request, id):
 
     # else:
     #     return redirect('articles:index')
+
+
+def update(request, id):
+    article = Article.objects.get(id=id)
+    
+    if request.method == 'POST':
+        # article = Article.objects.get(id=id)
+        form = ArticleForm(request.POST, instance=article)
+
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+        
+
+    else:
+        # article = Article.objects.get(id=id)
+
+        form = ArticleForm(instance=article) # instance 해당하는 데이터를 form에 넣어줌
+
+    context = {
+        'form': form
+    }
+    return render(request, 'update.html', context)
