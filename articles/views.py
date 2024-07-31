@@ -25,7 +25,7 @@ def create(request):
             form.save()
             return redirect('articles:index')
             
-        # else: 
+        # else: 중복된 코드 삭제 
             # 제대로 넣은 데이터는 남을 수 있게 새로운 form에 다시 request.POST 넣고 다시 보내주는 기능
             # form = ArticleForm(request.POST) 위에 선언된 form 사용
 
@@ -41,3 +41,15 @@ def create(request):
         'form': form
     }
     return render(request, 'create.html', context)
+
+
+def delete(request, id):
+    if request.method == 'POST':
+        article = Article.objects.get(id=id)
+
+        article.delete()
+
+    return redirect('articles:index')
+
+    # else:
+    #     return redirect('articles:index')
