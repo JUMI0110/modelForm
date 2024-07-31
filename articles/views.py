@@ -25,19 +25,19 @@ def create(request):
             form.save()
             return redirect('articles:index')
             
-        else: 
+        # else: 
             # 제대로 넣은 데이터는 남을 수 있게 새로운 form에 다시 request.POST 넣고 다시 보내주는 기능
             # form = ArticleForm(request.POST) 위에 선언된 form 사용
 
-            context = {
-                'form': form
-            }
-            return render(request, 'create.html', context)
+            # context = {
+            #     'form': form
+            # }
+            # return render(request, 'create.html', context)
             
     else: 
         form = ArticleForm()
 
-        context = {
-            'form': form
-        }
-        return render(request, 'create.html', context)
+    context = {
+        'form': form
+    }
+    return render(request, 'create.html', context)
